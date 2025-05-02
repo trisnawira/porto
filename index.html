@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portofolio Trisna Wira - Mahasiswa Teknik Otomasi Politeknik Negeri Bali, dengan pengalaman di bidang sistem kontrol, kelistrikan, dan elektronik.">
+
   <title>Trisna Wira - Portofolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="gambar/favicon.ico" type="image/x-icon">
+
 </head>
 <body>
+<button class="hamburger" id="hamburgerBtn">&#9776;</button>
 
 <div class="container">
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <h2>Menu</h2>
     <nav>
       <ul>
@@ -30,7 +35,7 @@
       <p>Selamat Datang di Portofolio saya</p>
     </header>
 
-    <section id="about" class="about">
+    <section id="about" class="about fade-section">
       <h2>Tentang Saya</h2>
       <div class="about-content">
         <img src="gambar/WhatsApp Image 2025-04-29 at 10.23.12_dee0bdd0.jpg" alt="Foto Trisna Wira" class="profile-img">
@@ -41,7 +46,7 @@
       </div>
     </section>
 
-    <section id="education" class="education">
+    <section id="education" class="education fade-section">
       <h2>Riwayat Pendidikan</h2>
       <div class="school">
         <img src="gambar/tk.jpg" alt="SD Negeri 3 Sesetan">
@@ -49,7 +54,7 @@
       </div>
       <div class="school">
         <img src="gambar/sd 3 sesetan.jpg" alt="SD Negeri 3 Sesetan">
-        <p>SD Negeri 3 Sesetan (2011 - 2016)</p>
+        <p>SD Negeri 3 Sesetan (2011 - 2017)</p>
       </div>
       <div class="school">
         <img src="gambar/smp negeri 11 denpasar.jpg" alt="SMP Negeri 11 Denpasar">
@@ -57,7 +62,7 @@
       </div>
       <div class="school">
         <img src="gambar/smkn 1 denapasar.jpg" alt="SMK Negeri 1 Denpasar">
-        <p>SMK Negeri 1 Denpasar (2021 - 2023)</p>
+        <p>SMK Negeri 1 Denpasar (2020 - 2023)</p>
       </div>
       <div class="school">
         <img src="https://baliberkarya.com/uploads/berita/Berita_230607080706_politeknik-negeri-bali-buka-pendaftaran-jalur-mandiri-tahap-ii-dengan-pilihan-6-jurusan.webp" alt="SMK Negeri 1 Denpasar">
@@ -65,7 +70,7 @@
       </div>
     </section>
 
-   <section id="projects" class="projects">
+   <section id="projects" class="projects fade-section">
   <h2>Pengalaman</h2>
   <div class="project-list">
 
@@ -101,7 +106,7 @@
 </section>
 
 
-    <section id="skills" class="skills">
+    <section id="skills" class="skills fade-section">
       <h2>Keahlian</h2>
       <ul>
         <li>Terampil dalam menyolder dan menangani komponen elektronik</li>
@@ -110,7 +115,7 @@
       </ul>
     </section>
 
-<section id="sertifikat" class="certificates">
+<section id="sertifikat" class="certificates fade-section">
   <h2>Sertifikat</h2>
   <div class="certificates">
     <div class="certificate-item">
@@ -136,7 +141,7 @@
 
 
 
-    <section id="contact" class="contact">
+    <section id="contact" class="contact fade-section">
   <h2>Kontak</h2>
   <p><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/trisnawira_/" target="_blank">@trisnawira_</a></p>
   <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/62895396815837" target="_blank">Hubungi Saya</a></p>
@@ -154,4 +159,62 @@
 </div>
 
 </body>
+  <script>
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const sidebar = document.getElementById("sidebar");
+
+    hamburgerBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+    });
+
+    // Tambahan: tutup menu saat link ditekan (khusus mobile)
+    document.querySelectorAll(".sidebar a").forEach(link => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove("active");
+        }
+      });
+    });
+  </script>
+
+<button id="backToTop" title="Back to Top">↑</button>
+
+<script>
+// Sembunyiin semua section
+function hideAllSections() {
+  document.querySelectorAll('.fade-section').forEach(sec => {
+    sec.style.display = 'none';
+    sec.classList.remove('visible');
+  });
+}
+
+// Tampilkan section yang diklik dengan animasi
+function showSection(id) {
+  const section = document.querySelector(id);
+  if (section) {
+    section.style.display = 'block';
+    setTimeout(() => {
+      section.classList.add('visible');
+    }, 50);
+  }
+}
+
+// Handle klik menu
+document.querySelectorAll('.sidebar a').forEach(link => {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    const href = this.getAttribute('href');
+    hideAllSections();
+    showSection(href);
+  });
+});
+
+// Tampilkan section pertama saat halaman dibuka
+document.addEventListener('DOMContentLoaded', () => {
+  hideAllSections();
+  showSection('#about'); // ganti ini kalau mau defaultnya beda
+});
+</script>
+
+
 </html>
